@@ -6,15 +6,41 @@
     <link rel="stylesheet" href="mystyle.css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
-    <h1>This is my website.</h1>
-    <p>This is some text.</p>
-    <p>Work in progress.</p>
-    <p>test.</p>
-    
+ 
 
+    <div class="topnav" id="myTopnav">
+        <a href="#koti" class="active">Koti</a>
+        <a href="#projektit">Projektit</a>
+        <a href="#yhteystiedot">Yhteystiedot</a>
+        <a href="#yleinen">Yleinen</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+ <div class="sisalto">
+   
+    <div class="welcome">
+        <h1>Welcome.</h1>
+    </div>
+
+</div>  
+
+ <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+    </script>
 
 </body>
 </html>
