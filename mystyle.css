@@ -40,20 +40,35 @@ body {
   display: none;
 }
 
+.topnav h1{
+  text-align: right;
+  padding:0em;
+  margin-right: 1em;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  height: 52px;
+  color: #3498db;
+  
+}
+
 .sisalto{
-  border: 5px solid #FFFF00;
   max-width: 1140px;
   margin: auto;
-  width: 60%;
-  padding: 10px;
-  height: 20em;
+  /*width: 60%;*/
 }
-.welcome{
-  width: 100%;
-  border: 5px solid #FFFF00;
-  text-align: center;
-  font-size: 3em;
+
+.profiilikuva{
+  text-align: left;
+  width: 40%;
+  margin: 10px;
+
   
+}
+.esittely{
+  text-align: left;
+  border: 2px #34495e;
+  width: 500px;
+
 }
 
 
