@@ -58,14 +58,15 @@ body {
 }
 
 .profiilikuva{
-  text-align: left;
-  width: 40%;
+  float: left;
+  width: 500px;
   margin: 10px;
+  border: 0px;
 
   
 }
 .esittely{
-  text-align: left;
+  float: left;
   border: 2px #34495e;
   width: 500px;
 
