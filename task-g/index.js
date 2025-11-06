@@ -45,9 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Full name: at least 2 words, 2+ chars each
         const nameParts = name.split(/\s+/).filter(Boolean);
         const validName =
-            nameParts.length >= 2 && nameParts.every((part) => part.length >= 2);
+            nameParts.length >= 2 &&
+            nameParts.every(part => /^[A-Za-zÄÖÅäöå]{2,}$/.test(part));
         if (!validName) {
-            showError(nameField, "Your name should be 2 words and 2 characters per word.");
+            showError(nameField, "Your name should be 2 words and 2 characters per word, and no numbers.");
             return;
         }
 
