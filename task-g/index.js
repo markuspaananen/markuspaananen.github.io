@@ -59,9 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Phone validation (basic pattern: allows digits, +, -, spaces)
-        const phonePattern = /^\+?\d[\d\s\-]{6,}$/;
+        const phonePattern = /^\+358[\d\s-]{6,}$/;
         if (!phonePattern.test(phone)) {
-            showError(phoneField, "This phone number is not valid phone number.");
+            showError(phoneField, "This phone number is not valid Finnish phone number.");
             return;
         }
 
