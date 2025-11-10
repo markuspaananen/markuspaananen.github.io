@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data collection form</title>
+    <script src="form.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <!--
+    Author: Ville Heikkiniemi
+    Date: 2025-10-06
+
+    Modified: Markus Paananen
+    Date: 2025-11-10
+  -->
+
+    <header class="bg-[#273e73] text-white py-8">
+        <h1 class="text-center text-2xl">Registeration page</h1>
+    </header>
+
+    <main class="px-4 py-6 max-w-screen-xl mx-auto sm:px-6 md:px-8 lg:px-12">
+        <!-- Top row split into two blocks -->
+        <div class="grid md:grid-cols-3 gap-4">
+            <!-- Student info (30%) -->
+            <section class="bg-white border border-slate-300 rounded-lg shadow-md p-4">
+                <h2 class="text-lg font-semibold mb-2">Information</h2>
+                <p><span class="font-medium">Markus Paananen</span></p>
+                <p><span class="font-medium">NTIS22K</span></p>
+            </section>
+
+            <!-- Controls (70%): add course + day marks -->
+            <section class="bg-white border border-slate-300 rounded-lg shadow-md p-4 md:col-span-2">
+                <h2 class="text-lg font-semibold mb-4">Submit your information</h2>
+
+                <form id="addCourseForm" novalidate>
+                    <input type="hidden" id="timestamp" name="timestamp">
+                    <div class="mb-4">
+                        <label for="fullName" class="block mb-2">Full name:</label>
+                        <input id="fullName" name="fullName" type="text" required placeholder="John Doe"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email" class="block mb-2">Email:</label>
+                        <input id="email" name="email" type="email" required placeholder="john@example.com"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="phone" class="block mb-2">Phone number:</label>
+                        <input id="phone" name="phone" type="tel" required placeholder="+358 40 123 4567"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="birthDate" class="block mb-2">Birth date:</label>
+                        <input id="birthDate" name="birthDate" type="date" required
+                            class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="inline-flex items-center">
+                            <input id="terms" name="terms" type="checkbox" required class="form-checkbox text-blue-600">
+                            <span class="ml-2">Accept the terms</span>
+                        </label>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <button type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Submit</button>
+                        <button type="reset"
+                            class="bg-gray-200 text-gray-700 px-4 py-2 rounded-md shadow hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300">Clear</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-white border border-slate-300 rounded-lg shadow-md p-4 mt-8 overflow-x-auto">
+            <table id="timetable" class="w-full table-auto">
+                <thead class="bg-[#273e73] text-white">
+                    <tr>
+                        <th scope="col" class="px-4 py-2 text-left">Timestamp</th>
+                        <th scope="col" class="px-4 py-2 text-left">Full Name</th>
+                        <th scope="col" class="px-4 py-2 text-left">Email</th>
+                        <th scope="col" class="px-4 py-2 text-left">Phone</th>
+                        <th scope="col" class="px-4 py-2 text-left">Birth Date</th>
+                        <th scope="col" class="px-4 py-2 text-left">Accepted Terms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+
+</html>

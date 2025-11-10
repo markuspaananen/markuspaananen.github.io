@@ -4,22 +4,41 @@
 // Collects form data, validates input, adds timestamp, and appends to table
 
 // modified: Markus Paananen
-// Date: 2025-11-6
+// Date: 2025-11-10
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("addCourseForm");
     const tableBody = document.getElementById("timetable").querySelector("tbody");
     const timestampInput = document.getElementById("timestamp");
 
-    // helper to show custom validation error on a specific field
+    // Helper to show custom validation error on a specific field
     const showError = (field, message) => {
-        field.setCustomValidity(message);
-        field.reportValidity();
+        // Find or create the error message container
+        let errorElement = field.nextElementSibling;
+
+        // If there's no existing error message container, create one
+        if (!errorElement || !errorElement.classList.contains("error-message")) {
+            errorElement = document.createElement("p");
+            errorElement.classList.add("error-message", "text-red-500", "text-sm", "mt-1");
+            field.insertAdjacentElement("afterend", errorElement);
+        }
+
+        // Set the error message and make it visible
+        errorElement.textContent = message;
     };
 
-    // clear old errors on input
+    // Clear old errors on input
     form.querySelectorAll("input").forEach((input) => {
-        input.addEventListener("input", () => input.setCustomValidity(""));
+        input.addEventListener("input", () => {
+            // Remove the error message if it exists
+            const errorElement = input.nextElementSibling;
+            if (errorElement && errorElement.classList.contains("error-message")) {
+                errorElement.remove();
+            }
+
+            // Clear the custom validity
+            input.setCustomValidity("");
+        });
     });
 
     form.addEventListener("submit", (event) => {
@@ -35,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const phoneField = form.phone;
         const birthDateField = form.birthDate;
         const termsField = form.terms;
+        const termsText = form.termsText
 
         const name = nameField.value.trim();
         const email = emailField.value.trim();
@@ -55,14 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Email validation
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
-            showError(emailField, "This email address is not valid address.");
+            showError(emailField, "This email address is not valid.");
             return;
         }
 
         // Phone validation (basic pattern: allows digits, +, -, spaces)
         const phonePattern = /^\+358[\d\s-]{6,}$/;
         if (!phonePattern.test(phone)) {
-            showError(phoneField, "This phone number is not valid Finnish phone number.");
+            showError(phoneField, "This phone number is not a valid Finnish phone number, start the number with +358");
             return;
         }
 
@@ -72,8 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         const birthDate = new Date(birthDateValue);
-
-
         const finnishBirthDate = String(birthDate.getDate()).padStart(2, "0") + "." +
             String(birthDate.getMonth() + 1).padStart(2, "0") + "." +
             birthDate.getFullYear();
@@ -82,12 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const ageDiff = today.getFullYear() - birthDate.getFullYear();
         const hasBirthdayPassed =
             today.getMonth() > birthDate.getMonth() ||
-            (today.getMonth() === birthDate.getMonth() &&
-                today.getDate() >= birthDate.getDate());
+            (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
         const age = hasBirthdayPassed ? ageDiff : ageDiff - 1;
 
         if (birthDate > today || age < 13) {
-            showError(birthDateField, "You need to be atleast 13 years old to submit.");
+            showError(birthDateField, "You need to be at least 13 years old to submit.");
             return;
         }
 
